@@ -25,6 +25,10 @@ class OrderViewModel: ViewModel() {
         _flavour.value = desiredFlavour
     }
 
+    fun hasNoFlavourSet(): Boolean{
+        return _flavour.value.isNullOrEmpty()
+    }
+
     fun setDate(pickupDate: String){
         _date.value = pickupDate
     }
