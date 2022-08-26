@@ -50,6 +50,7 @@ class SummaryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
             sendButton.setOnClickListener { sendOrder() }
             viewModel = sharedViewModel
         }
