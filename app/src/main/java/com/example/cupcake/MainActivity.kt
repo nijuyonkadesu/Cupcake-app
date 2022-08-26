@@ -16,8 +16,12 @@
 package com.example.cupcake
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.NavController
 
 /**
  * Activity for cupcake order flow.
  */
-class MainActivity : AppCompatActivity(R.layout.activity_main)
+class MainActivity : AppCompatActivity(R.layout.activity_main) { // layout inflated as a part of super.onCreate(savedInstanceState)
+
+}
