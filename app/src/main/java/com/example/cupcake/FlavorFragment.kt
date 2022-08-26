@@ -51,8 +51,8 @@ class FlavorFragment : Fragment() {
 
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner // make data regarding to this Fragment layout observable ie, by changing `model` lifecycle owner to `view` lifecycle owner
-            nextButton.setOnClickListener { goToNextScreen() }
             viewModel = sharedViewModel
+            flavorFragment = this@FlavorFragment // 'this' without @ refers to the binding instance
         }
     }
 

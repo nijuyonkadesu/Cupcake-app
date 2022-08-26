@@ -15,8 +15,8 @@ class OrderViewModel: ViewModel() {
     private var _quantity = MutableLiveData<Int>()
     val quantity: LiveData<Int> = _quantity
 
-    private var _flavour = MutableLiveData<String>()
-    val flavour: LiveData<String> = _flavour
+    private var _flavor = MutableLiveData<String>()
+    val flavor: LiveData<String> = _flavor
 
     private var _date = MutableLiveData<String>()
     val date: LiveData<String> = _date
@@ -37,12 +37,12 @@ class OrderViewModel: ViewModel() {
         updatePrice()
     }
 
-    fun setFlavour(desiredFlavour: String){
-        _flavour.value = desiredFlavour
+    fun setFlavor(desiredFlavour: String){
+        _flavor.value = desiredFlavour
     }
 
-    fun hasNoFlavourSet(): Boolean{
-        return _flavour.value.isNullOrEmpty()
+    fun hasNoFlavorSet(): Boolean{
+        return _flavor.value.isNullOrEmpty()
     }
 
     fun setDate(pickupDate: String){
@@ -62,7 +62,7 @@ class OrderViewModel: ViewModel() {
     }
     fun resetOrder() {
         _quantity.value = 0
-        _flavour.value = ""
+        _flavor.value = ""
         _date.value = dateOptions[0]
         _price.value = 0.0
     }

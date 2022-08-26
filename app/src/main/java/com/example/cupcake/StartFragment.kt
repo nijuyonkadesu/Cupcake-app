@@ -47,13 +47,7 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding?.apply {
-            // Set up the button click listeners
-            orderOneCupcake.setOnClickListener { orderCupcake(1) }
-            orderSixCupcakes.setOnClickListener { orderCupcake(6) }
-            orderTwelveCupcakes.setOnClickListener { orderCupcake(12) }
-        }
+        binding?.startFragent = this // allow fragment_start.xml to access FragmentStart class
     }
 
     /**
@@ -61,9 +55,9 @@ class StartFragment : Fragment() {
      */
     fun orderCupcake(quantity: Int) {
         sharedViewModel.setQuantity(quantity)
-        if(sharedViewModel.hasNoFlavourSet()){
+        if(sharedViewModel.hasNoFlavorSet()){
             // defaults to vanilla if no flavour has been set
-            sharedViewModel.setFlavour(getString(R.string.vanilla))
+            sharedViewModel.setFlavor(getString(R.string.vanilla))
         }
         findNavController().navigate(R.id.action_startFragment_to_flavorFragment)
     }
