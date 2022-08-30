@@ -61,13 +61,23 @@ class SummaryFragment : Fragment() {
      * Submit the order by sharing out the order details to another app via an implicit intent.
      */
     fun sendOrder() {
+        val numberOfCupcakes = sharedViewModel.quantity.value ?: 0
+        val orderSummary = getString(
+            R.string.order_details,
+            resources.getQuantityString(R.plurals.cupcakes, numberOfCupcakes, numberOfCupcakes), // quantity strings
+            sharedViewModel.flavor.value.toString(),
+            sharedViewModel.date.value.toString(),
+            sharedViewModel.price.value.toString()
+        )
         val sendIntent = Intent().apply {
             action = Intent.ACTION_SEND
             type = "text/plain"
-            putExtra(Intent.EXTRA_TEXT, resources.getString(R.string.order_details, binding?.quantity?.text, binding?.flavor?.text, binding?.date?.text, binding?.total?.text))
+            putExtra(Intent.EXTRA_SUBJECT, getString(R.string.new_cupcake_order))
+            putExtra(Intent.EXTRA_TEXT, orderSummary)
         }
-        val shareIntent = Intent.createChooser(sendIntent, "Your Order!")
-        context?.startActivity(shareIntent)
+        //val shareIntent = Intent.createChooser(sendIntent, "Your Order!")
+        if(activity?.packageManager?.resolveActivity(sendIntent, 0) != null) // prevents crashing if there's no app to handle the intent
+            context?.startActivity(sendIntent)
     }
 
     /**
